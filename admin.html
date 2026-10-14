@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>后台管理｜James Joseph Benjamin Jr.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/admin.css" />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="login-card" data-login-view>
+        <div class="admin-mark">JB</div>
+        <p class="eyebrow">CHEN LAW OFFICE · ADMIN</p>
+        <h1>后台管理</h1>
+        <p class="muted">管理前台联系入口，并查看用户提交的咨询信息。</p>
+        <form data-login-form>
+          <label>账户名<input name="username" type="text" value="admin" autocomplete="username" required /></label>
+          <label>密码<input name="password" type="password" autocomplete="current-password" required /></label>
+          <button type="submit">登录后台 <span>↗</span></button>
+          <p class="form-error" data-login-error role="alert"></p>
+        </form>
+        <a class="back-link" href="/">← 返回网站</a>
+      </section>
+
+      <section class="dashboard" data-dashboard hidden>
+        <header class="dashboard-header">
+          <div><p class="eyebrow">CHEN LAW OFFICE · ADMIN</p><h1>后台管理</h1></div>
+          <div class="header-actions"><a href="/" target="_blank" rel="noreferrer">查看网站 ↗</a><button type="button" data-logout>退出</button></div>
+        </header>
+        <div class="dashboard-grid">
+          <section class="panel settings-panel"><div class="panel-heading"><div><span class="panel-kicker">01 / SITE CONTENT</span><h2>全部前端内容</h2></div><span class="panel-status" data-settings-status></span></div><p class="panel-desc">这里的每一项都对应前台页面文字。修改任意标题、段落、按钮、导航、地址或表单文字后，保存即可同步到网站。</p><form data-settings-form>
+            <div class="settings-group"><span class="settings-group-title">全部文字内容</span><div data-all-content></div></div>
+            <div class="settings-group"><span class="settings-group-title">联系跳转链接</span><label>WhatsApp 跳转链接<input name="whatsapp_url" type="url" placeholder="https://wa.me/..." required /></label><label>电报 / Telegram 跳转链接<input name="telegram_url" type="url" placeholder="https://t.me/..." required /></label></div>
+            <button type="submit">保存前端内容 <span>↗</span></button><p class="form-error" data-settings-error role="alert"></p>
+          </form></section>
+          <section class="panel inquiries-panel"><div class="panel-heading"><div><span class="panel-kicker">02 / INQUIRIES</span><h2>用户咨询</h2></div><button class="refresh-button" type="button" data-refresh>刷新 ↻</button></div><p class="panel-desc">用户提交的姓名、电话、邮箱和咨询内容会显示在这里。</p><div class="inquiries-list" data-inquiries-list><div class="empty-state">正在读取咨询记录…</div></div></section>
+        </div>
+      </section>
+    </main>
+    <script src="/admin.js"></script>
+  </body>
+</html>

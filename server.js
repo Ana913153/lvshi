@@ -124,11 +124,13 @@ function parseCookies(req) {
 }
 
 function setSessionCookie(res, token, maxAge = 60 * 60 * 8) {
-  res.setHeader('Set-Cookie', `admin_session=${encodeURIComponent(token)}; Max-Age=${maxAge}; Path=/; HttpOnly; SameSite=None; Secure`);
+  const secure = process.env.COOKIE_SECURE === 'true';
+  res.setHeader('Set-Cookie', `admin_session=${encodeURIComponent(token)}; Max-Age=${maxAge}; Path=/; HttpOnly; ${secure ? 'SameSite=None; Secure' : 'SameSite=Lax'}`);
 }
 
 function clearSessionCookie(res) {
-  res.setHeader('Set-Cookie', 'admin_session=; Max-Age=0; Path=/; HttpOnly; SameSite=None; Secure');
+  const secure = process.env.COOKIE_SECURE === 'true';
+  res.setHeader('Set-Cookie', `admin_session=; Max-Age=0; Path=/; HttpOnly; ${secure ? 'SameSite=None; Secure' : 'SameSite=Lax'}`);
 }
 
 function getSession(req) {

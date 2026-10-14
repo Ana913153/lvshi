@@ -8,15 +8,15 @@ const settingsStatus = document.querySelector('[data-settings-status]');
 const inquiriesList = document.querySelector('[data-inquiries-list]');
 const allContent = document.querySelector('[data-all-content]');
 const contentLabels = {
-  meta_description:'页面 SEO 描述', menu_label:'移动端菜单文字', brand_aria:'品牌无障碍描述', lawyer_name:'律师姓名', firm_name:'事务所名称', address:'底部地址', phone:'联系电话', email:'联系邮箱',
-  nav_about:'导航：关于律师', nav_practice:'导航：执业领域', nav_approach:'导航：服务理念', nav_contact:'导航：预约咨询',
-  hero_kicker:'首屏眉题', hero_line_one:'首屏标题第一行', hero_line_two:'首屏标题第二行', hero_desc:'首屏说明', hero_cta:'首屏按钮', scroll_cue:'向下浏览', hero_index_current:'首屏页码当前值', hero_index_total:'首屏页码总数',
+  meta_description:'页面 SEO 描述', page_title:'浏览器页面标题', menu_label:'移动端菜单文字', brand_aria:'品牌无障碍描述', nav_aria:'导航无障碍描述', brand_seal:'品牌印章文字', brand_url:'品牌链接地址', hero_image_url:'首屏图片地址', portrait_image_url:'肖像图片地址', lawyer_name:'律师姓名', firm_name:'事务所名称', address:'底部地址', phone:'联系电话', email:'联系邮箱',
+  nav_about:'导航：关于律师', nav_practice:'导航：执业领域', nav_approach:'导航：服务理念', nav_contact:'导航：预约咨询', nav_about_url:'关于律师跳转地址', nav_practice_url:'执业领域跳转地址', nav_approach_url:'服务理念跳转地址', nav_contact_url:'预约咨询跳转地址',
+  hero_kicker:'首屏眉题', hero_line_one:'首屏标题第一行', hero_line_two:'首屏标题第二行', hero_desc:'首屏说明', hero_cta:'首屏按钮', hero_cta_url:'首屏按钮跳转地址', practice_cta_url:'执业经验按钮跳转地址', ui_arrow:'全站箭头符号', back_to_top:'返回顶部文字', footer_back_url:'返回顶部跳转地址', scroll_aria:'滚动提示无障碍描述', scroll_cue:'向下浏览', scroll_cue_url:'向下浏览跳转地址', hero_index_current:'首屏页码当前值', hero_index_total:'首屏页码总数', section_one_number:'第一部分编号', section_two_number:'第二部分编号', section_three_number:'第三部分编号', principle_one_number:'理念一编号', principle_two_number:'理念二编号', principle_three_number:'理念三编号',
   about_marker:'教育背景英文标识', about_label:'教育背景栏目眉题', about_title_one:'教育背景标题第一行', about_title_two:'教育背景标题第二行', about_lead:'教育背景简介', about_body:'教育背景正文', about_quote:'教育背景引言', about_caption:'照片说明',
   practice_marker:'执业经验英文标识', practice_label:'执业经验栏目眉题', practice_title_one:'执业经验标题第一行', practice_title_two:'执业经验标题第二行', practice_years:'经验数字', practice_note:'经验数字说明', practice_body_one:'执业经验正文一', practice_body_two:'执业经验正文二', practice_cta:'执业经验按钮',
   approach_marker:'服务理念英文标识', approach_label:'服务理念栏目眉题', approach_title_one:'服务理念标题第一行', approach_title_two:'服务理念标题第二行', approach_lead:'服务理念简介', principle_one_title:'理念一标题', principle_one_body:'理念一正文', principle_two_title:'理念二标题', principle_two_body:'理念二正文', principle_three_title:'理念三标题', principle_three_body:'理念三正文',
   contact_label:'联系栏目眉题', contact_title_one:'联系标题第一行', contact_title_two:'联系标题第二行', contact_desc:'联系栏目说明', whatsapp_label:'WhatsApp 按钮文字', telegram_label:'电报按钮文字',
-  form_name_label:'表单姓名标签', form_name_placeholder:'表单姓名提示', form_email_label:'表单邮箱标签', form_email_placeholder:'表单邮箱提示', form_phone_label:'表单电话标签', form_phone_placeholder:'表单电话提示', form_message_label:'表单内容标签', form_message_placeholder:'表单内容提示', form_note:'表单声明', form_submit:'表单提交按钮', form_success_title:'提交成功标题', form_success_body:'提交成功说明',
-  footer_about:'页脚关于链接', footer_practice:'页脚执业链接', footer_approach:'页脚理念链接', footer_contact:'页脚联系链接', footer_year:'页脚年份版权', disclaimer_link:'免责声明链接文字', disclaimer:'免责声明正文'
+  form_name_label:'表单姓名标签', form_name_placeholder:'表单姓名提示', form_email_label:'表单邮箱标签', form_email_placeholder:'表单邮箱提示', form_phone_label:'表单电话标签', form_phone_placeholder:'表单电话提示', form_message_label:'表单内容标签', form_message_placeholder:'表单内容提示', form_note:'表单声明', form_submit:'表单提交按钮', form_submitting:'提交中提示', form_error_required:'必填项错误提示（英文）', form_error_email:'邮箱错误提示（英文）', form_error_submit:'提交失败提示（英文）', form_success_title:'提交成功标题（英文）', form_success_body:'提交成功说明（英文）',
+  footer_about:'页脚关于链接', footer_practice:'页脚执业链接', footer_approach:'页脚理念链接', footer_contact:'页脚联系链接', footer_about_url:'页脚关于跳转地址', footer_practice_url:'页脚执业跳转地址', footer_approach_url:'页脚理念跳转地址', footer_contact_url:'页脚联系跳转地址', footer_year:'页脚年份版权', disclaimer_link:'免责声明链接文字', disclaimer_url:'免责声明跳转地址', disclaimer:'免责声明正文'
 };
 
 function renderContentFields(settings) {

@@ -30,11 +30,14 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach((item) => revealObserver.observe(item));
 } else revealItems.forEach((item) => item.classList.add('visible'));
 
+let siteSettings = {};
+
 async function loadSiteSettings() {
   try {
     const response = await fetch('/api/site-settings');
     if (!response.ok) return;
     const settings = await response.json();
+    siteSettings = settings;
     document.querySelectorAll('[data-site]').forEach((element) => {
       const key = element.dataset.site;
       if (settings[key] !== undefined) element.textContent = settings[key];
@@ -51,11 +54,17 @@ async function loadSiteSettings() {
       const key = element.dataset.siteAria;
       if (settings[key] !== undefined) element.setAttribute('aria-label', settings[key]);
     });
+    document.querySelectorAll('[data-site-href]').forEach((element) => {
+      const key = element.dataset.siteHref;
+      if (settings[key] !== undefined) element.setAttribute('href', settings[key]);
+    });
+    if (settings.page_title) document.title = settings.page_title;
+    if (settings.hero_image_url) document.documentElement.style.setProperty('--hero-image', `url("${settings.hero_image_url.replace(/"/g, '')}")`);
+    if (settings.portrait_image_url) document.documentElement.style.setProperty('--portrait-image', `url("${settings.portrait_image_url.replace(/"/g, '')}")`);
     const whatsapp = document.querySelector('[data-contact-link="whatsapp"]');
     const telegram = document.querySelector('[data-contact-link="telegram"]');
     if (whatsapp && settings.whatsapp_url) whatsapp.href = settings.whatsapp_url;
     if (telegram && settings.telegram_url) telegram.href = settings.telegram_url;
-    if (settings.lawyer_name && settings.firm_name) document.title = `${settings.lawyer_name}｜${settings.firm_name}`;
   } catch (error) {
     console.warn('Site settings unavailable', error);
   }
@@ -83,17 +92,17 @@ form?.addEventListener('submit', async (event) => {
   const formData = new FormData(form);
   const email = String(formData.get('email') || '').trim();
   if (![formData.get('name'), email, formData.get('phone'), formData.get('message')].every((value) => String(value || '').trim())) {
-    showFormError('Please complete all required fields.');
+    showFormError(siteSettings.form_error_required || 'Please complete all required fields.');
     return;
   }
   if (!/^\S+@\S+\.\S+$/.test(email)) {
-    showFormError('Please enter a valid email address.');
+    showFormError(siteSettings.form_error_email || 'Please enter a valid email address.');
     form.querySelector('[name="email"]')?.focus();
     return;
   }
   if (submitButton) {
     submitButton.disabled = true;
-    submitButton.innerHTML = 'Submitting…';
+    submitButton.innerHTML = siteSettings.form_submitting || 'Submitting…';
   }
   try {
     const response = await fetch('/api/contact', {
@@ -106,15 +115,15 @@ form?.addEventListener('submit', async (event) => {
     form.querySelectorAll('input, textarea').forEach((field) => { field.disabled = true; });
     const successTitle = success?.querySelector('strong');
     const successBody = success?.querySelector('span');
-    if (successTitle) successTitle.textContent = 'Thank you for your message.';
-    if (successBody) successBody.textContent = 'We will contact you shortly.';
+    if (successTitle) successTitle.textContent = siteSettings.form_success_title || 'Thank you for your message.';
+    if (successBody) successBody.textContent = siteSettings.form_success_body || 'We will contact you shortly.';
     success?.classList.add('show');
     success?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   } catch (error) {
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.innerHTML = 'Submit Inquiry <span>↗</span>';
+      submitButton.innerHTML = `${siteSettings.form_submit || 'Submit Inquiry'} <span>${siteSettings.ui_arrow || '↗'}</span>`;
     }
-    showFormError(error.message || 'Submission failed. Please try again later.');
+    showFormError(siteSettings.form_error_submit || 'Submission failed. Please try again later.');
   }
 });

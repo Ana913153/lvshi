@@ -9,7 +9,8 @@ const port = Number(process.env.PORT || 3000);
 const sessions = new Map();
 const DEFAULT_SETTINGS = {
   meta_description: 'James Joseph Benjamin Jr. 纽约律师事务所，为跨境家庭、企业与个人提供清晰、稳健、值得托付的法律服务。',
-  menu_label: '菜单', brand_aria: '律师事务所首页',
+  page_title: 'James Joseph Benjamin Jr.｜纽约律师事务所', menu_label: '菜单', brand_aria: '律师事务所首页', nav_aria: '主导航',
+  brand_seal: 'JB', brand_url: '#top', hero_image_url: '/images/james-joseph-benjamin.jpg', portrait_image_url: '/images/james-joseph-benjamin.jpg',
   whatsapp_url: 'https://wa.me/12125550188',
   telegram_url: 'https://t.me/chenlawnyc',
   lawyer_name: 'James Joseph Benjamin Jr.',
@@ -21,8 +22,9 @@ const DEFAULT_SETTINGS = {
   hero_line_one: '把复杂的事，',
   hero_line_two: '交给有判断力的人。',
   hero_desc: '以纽约法律实践为基础，为每一项重要决定提供清晰方向。',
-  nav_about: '关于律师', nav_practice: '执业领域', nav_approach: '服务理念', nav_contact: '预约咨询',
-  hero_cta: '预约一次初步沟通', scroll_cue: '向下浏览', hero_index_current: '01', hero_index_total: '04',
+  nav_about: '关于律师', nav_practice: '执业领域', nav_approach: '服务理念', nav_contact: '预约咨询', nav_about_url: '#about', nav_practice_url: '#practice', nav_approach_url: '#approach', nav_contact_url: '#contact',
+  hero_cta: '预约一次初步沟通', hero_cta_url: '#contact', practice_cta_url: '#contact', ui_arrow: '↗', back_to_top: '返回顶部', scroll_aria: '向下浏览', scroll_cue: '向下浏览', scroll_cue_url: '#about', hero_index_current: '01', hero_index_total: '04',
+  section_one_number: '01', section_two_number: '02', section_three_number: '03', principle_one_number: '01', principle_two_number: '02', principle_three_number: '03',
   about_marker: 'BACKGROUND', practice_marker: 'EXPERIENCE', approach_marker: 'OUR APPROACH',
   about_label: '专业背景', about_title_one: '深厚的教育背景，', about_title_two: '让判断更有根基。',
   about_lead: '毕业于美国纽约著名的卡多佐法学院（Cardozo School of Law），获得法律博士学位。',
@@ -42,8 +44,8 @@ const DEFAULT_SETTINGS = {
   whatsapp_label: 'WhatsApp', telegram_label: '电报 / Telegram',
   form_name_label: '姓名', form_name_placeholder: '您的姓名', form_email_label: '电子邮件', form_email_placeholder: 'you@example.com',
   form_phone_label: '电话号码', form_phone_placeholder: '+1', form_message_label: '想咨询的内容', form_message_placeholder: '请简要描述您希望了解的事项',
-  form_note: '提交即表示您了解：此表单不构成律师代理关系。', form_submit: '提交咨询', form_success_title: '感谢您的留言。', form_success_body: '我们会尽快与您联系。',
-  footer_about: '关于律师', footer_practice: '执业领域', footer_approach: '服务理念', footer_contact: '联系我们',
+  form_note: '提交即表示您了解：此表单不构成律师代理关系。', form_submit: '提交咨询', form_submitting: 'Submitting…', form_error_required: 'Please complete all required fields.', form_error_email: 'Please enter a valid email address.', form_error_submit: 'Submission failed. Please try again later.', form_success_title: 'Thank you for your message.', form_success_body: 'We will contact you shortly.',
+  footer_about: '关于律师', footer_practice: '执业领域', footer_approach: '服务理念', footer_contact: '联系我们', footer_about_url: '#about', footer_practice_url: '#practice', footer_approach_url: '#approach', footer_contact_url: '#contact', footer_back_url: '#top', disclaimer_url: '#disclaimer',
   footer_year: '© 2026 CHEN LAW OFFICE · NEW YORK', disclaimer_link: '免责声明', disclaimer: '律师广告。网站信息仅供参考，不构成法律意见或律师代理关系。之前成功案例不保证类似案件结果。'
 };
 const types = {

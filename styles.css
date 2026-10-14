@@ -96,3 +96,7 @@ button { cursor: pointer; }
 
 .form-error { display:none; margin:14px 0 0; color:#8b2f2f; font-size:11px; line-height:1.6; }
 .form-error.show { display:block; }
+
+:root { --hero-image: url("/images/james-joseph-benjamin.jpg"); --portrait-image: url("/images/james-joseph-benjamin.jpg"); }
+.hero-image { background-image: var(--hero-image); }
+.portrait-image { background-image: linear-gradient(145deg, rgba(22,38,50,.12), rgba(22,38,50,.02)), var(--portrait-image); }

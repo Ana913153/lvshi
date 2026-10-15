@@ -189,6 +189,10 @@ async function getSettings() {
   return rows.reduce((settings, row) => ({ ...settings, [row.setting_key]: row.setting_value }), { ...DEFAULT_SETTINGS });
 }
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[character]));
+}
+
 async function handleApi(req, res, pathname) {
   if (pathname === '/api/site-settings' && req.method === 'GET') {
     try {
@@ -305,6 +309,23 @@ const server = http.createServer(async (req, res) => {
     if (error) {
       res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
       return res.end('Server error');
+    }
+    let output = content;
+    if (filePath === path.join(root, 'index.html')) {
+      getSettings().then((settings) => {
+        const html = content.toString('utf8')
+          .replace(/(<title[^>]*data-site-title[^>]*>).*?(<\/title>)/i, `$1${escapeHtml(settings.page_title)}$2`)
+          .replace(/(<meta[^>]+name=["']description["'][^>]+content=["']).*?(["'][^>]*data-site-meta[^>]*>)/i, `$1${escapeHtml(settings.meta_description)}$2`);
+        res.writeHead(200, {
+          'Content-Type': types[ext] || 'application/octet-stream',
+          'Cache-Control': ext === '.html' || ext === '.json' ? 'no-cache' : 'public, max-age=3600'
+        });
+        res.end(html);
+      }).catch(() => {
+        res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream', 'Cache-Control': 'no-cache' });
+        res.end(output);
+      });
+      return;
     }
     res.writeHead(200, {
       'Content-Type': types[ext] || 'application/octet-stream',

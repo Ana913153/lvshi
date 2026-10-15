@@ -8,7 +8,7 @@ const settingsStatus = document.querySelector('[data-settings-status]');
 const inquiriesList = document.querySelector('[data-inquiries-list]');
 const allContent = document.querySelector('[data-all-content]');
 const contentLabels = {
-  meta_description:'页面 SEO 描述', page_title:'浏览器页面标题', menu_label:'移动端菜单文字', brand_aria:'品牌无障碍描述', nav_aria:'导航无障碍描述', brand_seal:'品牌印章文字', brand_url:'品牌链接地址', hero_image_url:'首屏图片地址', portrait_image_url:'肖像图片地址', lawyer_name:'律师姓名', firm_name:'事务所名称', address:'底部地址', phone:'联系电话', email:'联系邮箱',
+  menu_label:'移动端菜单文字', brand_aria:'品牌无障碍描述', nav_aria:'导航无障碍描述', brand_seal:'品牌印章文字', brand_url:'品牌链接地址', hero_image_url:'首屏图片地址', portrait_image_url:'肖像图片地址', lawyer_name:'律师姓名', firm_name:'事务所名称', address:'底部地址', phone:'联系电话', email:'联系邮箱',
   nav_about:'导航：关于律师', nav_practice:'导航：执业领域', nav_approach:'导航：服务理念', nav_contact:'导航：预约咨询', nav_about_url:'关于律师跳转地址', nav_practice_url:'执业领域跳转地址', nav_approach_url:'服务理念跳转地址', nav_contact_url:'预约咨询跳转地址',
   hero_kicker:'首屏眉题', hero_line_one:'首屏标题第一行', hero_line_two:'首屏标题第二行', hero_desc:'首屏说明', hero_cta:'首屏按钮', hero_cta_url:'首屏按钮跳转地址', practice_cta_url:'执业经验按钮跳转地址', ui_arrow:'全站箭头符号', back_to_top:'返回顶部文字', footer_back_url:'返回顶部跳转地址', scroll_aria:'滚动提示无障碍描述', scroll_cue:'向下浏览', scroll_cue_url:'向下浏览跳转地址', hero_index_current:'首屏页码当前值', hero_index_total:'首屏页码总数', section_one_number:'第一部分编号', section_two_number:'第二部分编号', section_three_number:'第三部分编号', principle_one_number:'理念一编号', principle_two_number:'理念二编号', principle_three_number:'理念三编号',
   about_marker:'教育背景英文标识', about_label:'教育背景栏目眉题', about_title_one:'教育背景标题第一行', about_title_two:'教育背景标题第二行', about_lead:'教育背景简介', about_body:'教育背景正文', about_quote:'教育背景引言', about_caption:'照片说明',

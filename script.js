@@ -50,6 +50,12 @@ async function loadSiteSettings() {
       const key = element.dataset.siteMeta;
       if (settings[key] !== undefined) element.setAttribute('content', settings[key]);
     });
+    document.querySelectorAll('[data-site-og-title], [data-site-twitter-title]').forEach((element) => {
+      if (settings.page_title) element.setAttribute('content', settings.page_title);
+    });
+    document.querySelectorAll('[data-site-og-description], [data-site-twitter-description]').forEach((element) => {
+      if (settings.meta_description) element.setAttribute('content', settings.meta_description);
+    });
     document.querySelectorAll('[data-site-aria]').forEach((element) => {
       const key = element.dataset.siteAria;
       if (settings[key] !== undefined) element.setAttribute('aria-label', settings[key]);

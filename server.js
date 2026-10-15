@@ -316,10 +316,10 @@ const server = http.createServer(async (req, res) => {
         const html = content.toString('utf8')
           .replace(/(<title[^>]*data-site-title[^>]*>).*?(<\/title>)/i, `$1${escapeHtml(settings.page_title)}$2`)
           .replace(/(<meta[^>]+name=["']description["'][^>]+content=["']).*?(["'][^>]*data-site-meta[^>]*>)/i, `$1${escapeHtml(settings.meta_description)}$2`)
-          .replace(/(<meta[^>]+data-site-og-title[^>]+content=["']).*?(["'][^>]*>)/i, `$1${escapeHtml(settings.page_title)}$2`)
-          .replace(/(<meta[^>]+data-site-og-description[^>]+content=["']).*?(["'][^>]*>)/i, `$1${escapeHtml(settings.meta_description)}$2`)
-          .replace(/(<meta[^>]+data-site-twitter-title[^>]+content=["']).*?(["'][^>]*>)/i, `$1${escapeHtml(settings.page_title)}$2`)
-          .replace(/(<meta[^>]+data-site-twitter-description[^>]+content=["']).*?(["'][^>]*>)/i, `$1${escapeHtml(settings.meta_description)}$2`);
+          .replace(/(<meta[^>]+content=["']).*?(["'][^>]*data-site-og-title[^>]*>)/i, `$1${escapeHtml(settings.page_title)}$2`)
+          .replace(/(<meta[^>]+content=["']).*?(["'][^>]*data-site-og-description[^>]*>)/i, `$1${escapeHtml(settings.meta_description)}$2`)
+          .replace(/(<meta[^>]+content=["']).*?(["'][^>]*data-site-twitter-title[^>]*>)/i, `$1${escapeHtml(settings.page_title)}$2`)
+          .replace(/(<meta[^>]+content=["']).*?(["'][^>]*data-site-twitter-description[^>]*>)/i, `$1${escapeHtml(settings.meta_description)}$2`);
         res.writeHead(200, {
           'Content-Type': types[ext] || 'application/octet-stream',
           'Cache-Control': ext === '.html' || ext === '.json' ? 'no-cache' : 'public, max-age=3600'
